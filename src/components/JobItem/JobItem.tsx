@@ -1,27 +1,33 @@
 import { VacancyElement } from "@/interfaces/jobRosTrud.interface";
+import { useSWRConfig } from "swr"
 import parse from "html-react-parser"
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import s from './JobItem.module.scss'
 import AccordionRow from '../AccordionRow/AccordionRow'
+import axios from "axios";
+import { addBookmark, removeBookmark } from "@/api/axios/helpers";
 
 interface IJobListItemProps {
     job: VacancyElement
+    isBookmarked: boolean
 }
-const JobListItem = ({ job }: IJobListItemProps) => {
-
-    const isBookmarked = false
+const JobListItem = ({ job, isBookmarked = false }: IJobListItemProps) => {
+    
     //const bookmarks = useAppSelector(state => state.bookmarks.bookmarks)
     //const isBookmarked = bookmarks.some((bookmark) => bookmark.vacancy.id === job.vacancy.id)
     //const dispatch = useAppDispatch()
+    const { mutate } = useSWRConfig()
 
-    /* const handleClick = () => {
+    const handleClick = async () => {
         if (isBookmarked) {
-            dispatch(removeBookmark(job))
+            await removeBookmark(job)
+            mutate('api/jobs')
         } else {
-            dispatch(addBookmark(job))
+            await addBookmark(job)
+            mutate('api/jobs')
         }
-    } */
+    }
 
     return (
         <div className={`${s.jobListItem} ${isBookmarked && s.jobListItem_active}`}>
@@ -89,7 +95,7 @@ const JobListItem = ({ job }: IJobListItemProps) => {
                     </ul>
                 </div>
             </AccordionRow>
-            <button className={s.jobBookmark} >
+            <button className={s.jobBookmark} onClick={handleClick}>
                 {isBookmarked
                     ? <><BookmarkIcon sx={{ fontSize: "32px" }} /> Убрать </>
                     : <><BookmarkBorderIcon sx={{ fontSize: "32px" }} /> В закладки</>

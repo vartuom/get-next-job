@@ -9,6 +9,7 @@ import Layout from '@/components/Layout/Layout'
 import JobList from '@/components/JobList/JobList'
 import styles from './Home.module.css'
 import { IJobResponseData } from '@/interfaces/jobRosTrud.interface'
+import { getAllJobs } from '@/api/axios/helpers'
 
 const BASE_URL = 'http://opendata.trudvsem.ru/api/v1/vacancies'
 
@@ -19,8 +20,9 @@ const Home = () => {
 
   const fetcher = (url: string) => fetch(url).then(r => r.json())
   const query = BASE_URL + `?&limit=${pageSize}`
+
   const { data, error, isLoading } = useSWR<IJobResponseData>(query, fetcher)
-  console.log(data)
+  //console.log(data)
 
 
   return (
