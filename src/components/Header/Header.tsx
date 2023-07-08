@@ -1,6 +1,7 @@
 import React from 'react'
 import s from './Header.module.scss'
 import Image from 'next/image'
+import Navigation from '../Navigation/Navigation'
 
 const Header = () => {
   return (
@@ -13,7 +14,7 @@ const Header = () => {
                     <p className={s.leadParagraph}>
                         С использованием API «Работа России»
                     </p>
-                    {/* <Navigation /> */}
+                    <Navigation />
                 </div>
                 <Image
                     className={s.logo}
@@ -22,7 +23,7 @@ const Header = () => {
                     width={160}
                     height={175}
                 />
-            </div>
+            </div>            
         </header>
   )
 }

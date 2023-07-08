@@ -3,16 +3,18 @@ import { VacancyElement } from '@/interfaces/jobRosTrud.interface'
 import { getAllJobs } from '@/api/axios/helpers'
 import JobItem from '../JobItem/JobItem'
 import s from './JobList.module.scss'
-import { ILocalDbJob, ILocalDbJobResponce } from '@/interfaces/jobLocalDb.interface'
+import { ILocalDbJob, ILocalDbJobResponse } from '@/interfaces/jobLocalDb.interface'
+import useBookmarkedJobs from '@/hooks/useBookmarkedJobs'
 
 interface IJobListProps {
   jobs: VacancyElement[]
 }
 
 const JobList = ({ jobs }: IJobListProps) => {
-  const { data, error, isLoading } = useSWR<ILocalDbJobResponce>('api/jobs', getAllJobs)
-  console.log(data)
-  const checkIsBookmarked = (id: string) => data?.jobs.some((bookmark) => bookmark.jobId === id && bookmark.isBookmarked) || false
+
+  const { bookmarkedJobs } = useBookmarkedJobs()
+  const checkIsBookmarked = (id: string) => bookmarkedJobs?.jobs.some((bookmark) => bookmark.jobId === id && bookmark.isBookmarked) || false
+  
   return (
     <ul className={s.jobList}>
       {

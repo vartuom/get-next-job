@@ -7,14 +7,12 @@ import Meta from '../seo/Meta'
 
 const inter = Inter({ subsets: ['latin'] })
 
-const Layout: FC<PropsWithChildren<IMeta>> = ({ children, title, description }) => {
+const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <Meta title={title} description={description}>
-      <div className={inter.className}>
-        <Header />
-        {children}
-      </div>
-    </Meta>
+    <div className={inter.className}>
+      <Header />
+      {children}
+    </div>
   )
 }
 
