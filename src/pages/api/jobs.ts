@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { prisma } from '@/api/prisma'
-import { log } from 'console'
 
 export default async function handler(
   req: NextApiRequest,

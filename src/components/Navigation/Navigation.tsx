@@ -27,6 +27,17 @@ const Navigation = () => {
                         Закладки
                     </Link>
                 </li>
+                <li>
+                    <Link
+                        href={"/history"}   
+                        className={s.link}                    
+                        /* className={({ isActive }) =>
+                            isActive ? `${s.link} ${s.link_active}` : s.link
+                        } */
+                    >
+                        История
+                    </Link>
+                </li>
             </ul>
         </nav>
     )
