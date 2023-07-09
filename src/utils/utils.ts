@@ -19,7 +19,6 @@ export const debounce = (fn: Function, t: number) => {
 
 export const parseJobsEntries = (dbJobs: ILocalDbJobResponse, isBookmarkedOnly: boolean) => {
   const jobs = [] as VacancyElement[]
-  console.log(dbJobs)
   dbJobs?.jobs.forEach((dbJobEntry) => {
     if (isBookmarkedOnly) {
       if (dbJobEntry.isBookmarked) jobs.push(JSON.parse(dbJobEntry.jobData))
@@ -43,6 +42,5 @@ export const parseAndGroupJobsEntries = (dbJobs: ILocalDbJobResponse, isBookmark
     }
     return acc
   }, {})
-  console.log(jobs)
   return jobs
 }

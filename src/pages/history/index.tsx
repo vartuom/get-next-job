@@ -10,7 +10,6 @@ const HistoryPage = ({ parsedJobs }: InferGetServerSidePropsType<typeof getServe
 
 export const getServerSideProps = async () => {
   const jobs = await prisma.job.findMany()
-  //console.log(dbJobs)
   // @ts-ignore
   const parsedJobs = await parseAndGroupJobsEntries({ jobs }, false)
   return { props: { parsedJobs } }

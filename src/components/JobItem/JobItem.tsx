@@ -13,7 +13,6 @@ interface IJobListItemProps {
     isBookmarked: boolean
 }
 const JobListItem = ({ job, isBookmarked = false }: IJobListItemProps) => {
-    
     //const bookmarks = useAppSelector(state => state.bookmarks.bookmarks)
     //const isBookmarked = bookmarks.some((bookmark) => bookmark.vacancy.id === job.vacancy.id)
     //const dispatch = useAppDispatch()

@@ -1,15 +1,9 @@
-import React, { FC, PropsWithChildren } from 'react'
-import useSWR from 'swr'
-import { VacancyElement } from '@/interfaces/jobRosTrud.interface'
 import JobList from '@/components/JobList/JobList'
-import styles from './Bookmarks.module.css'
-import { getAllJobs } from '@/api/axios/helpers'
 import Meta from '@/components/seo/Meta'
-import { ILocalDbJobResponse } from '@/interfaces/jobLocalDb.interface'
 import useBookmarkedJobs from '@/hooks/useBookmarkedJobs'
 import { parseJobsEntries } from '@/utils/utils'
-
-const BASE_URL = 'http://opendata.trudvsem.ru/api/v1/vacancies'
+import { ThreeDots } from 'react-loader-spinner'
+import Empty from '@/components/Empty/Empty'
 
 interface IBookmarksProps {
   title: string
@@ -18,13 +12,24 @@ interface IBookmarksProps {
 
 const Bookmarks = ({ title, description }: IBookmarksProps) => {
 
-  const { bookmarkedJobs } = useBookmarkedJobs()
+  const { bookmarkedJobs, isLoading, isError } = useBookmarkedJobs()
+  const parsedJobs = parseJobsEntries(bookmarkedJobs!, true)
 
   return (
     <Meta title={title} description={description}>
-      <main className={styles.main}>
-        <JobList jobs={parseJobsEntries(bookmarkedJobs!, true)} />
-      </main>
+      <section>
+        {isLoading && <ThreeDots
+          height="120"
+          width="120"
+          radius="9"
+          color="#010b23"
+          ariaLabel="three-dots-loading"
+          wrapperStyle={{}}
+          visible={true}
+        />}
+        {!isLoading && <JobList jobs={parsedJobs} />}
+        {!isLoading && parsedJobs.length === 0 && <Empty>Вы еще не добавили закладки</Empty>}
+      </section>
     </Meta>
   )
 }
