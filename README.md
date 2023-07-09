@@ -1,38 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Поиск работы c использованием API «Работа России»
 
-## Getting Started
+Комбинированное SPA приложение на Next JS.  
+Демка с реализацией основных фич фреймворка (Pages Router).  
 
-First, run the development server:
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
+![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Что сделано:  
+1. api-роуты, сохранение истории и закладок в локальную БД SQLite с использованием Prisma ORM;
+2. useSWR, кэширование запросов к API Роструда и инвалидация кэша;
+3. поиск с дебаунсером;
+4. CSR с использованием mui на главной странице;
+5. SSR страницы с историей просмотра вакансий;
+6. SSG для индивидуальных страниц добавленных в базу вакансий;
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Планы на доработку:
+Сделать адаптив.
+Рефакторинг мелких недочетов.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+![Анимация](https://i.ibb.co/X7V90ZK/ezgif-com-optimize.gif)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Установка и работа
+Для работы приложения требуется локальный сервер Node.js.  
+Запуск dev-сборки осуществляется командами:
+### `npm i`
+### `npx prisma generate`
+### `npm run dev`
